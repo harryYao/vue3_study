@@ -1,27 +1,63 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <Header :addTodo="addTodo"/>
+      <List :todos="todos" :updateTodo="updateTodo"/>
+      <Footer :todos="todos"/>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent , reactive, toRefs } from 'vue'
+import Header from './components/Header.vue'
+import List from './components/List.vue'
+import Footer from './components/Footer.vue'
+import { Todo } from './types/todo'
+
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    Header, List, Footer
+  },
+  setup() {
+    const state = reactive<{todos: Todo[] }>({
+      todos: [
+        { id: 1, title: '今天天气好晴朗', isCompleted: false },
+        { id: 2, title: '今天天气好晴朗2', isCompleted: false },
+        { id: 3, title: '今天天气好晴朗3', isCompleted: false }
+      ]
+    })
+
+    const addTodo = (todo: Todo) => {
+      state.todos.unshift(todo)
+    }
+
+    const updateTodo = (todo: Todo, isCompleted: boolean) => {
+      todo.isCompleted = isCompleted;
+    }
+
+    return {
+      ...toRefs(state),
+      addTodo,
+      updateTodo
+    }
   }
-});
+})
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.todo-container {
+  width: 600px;
+  padding: 10px;
+  margin: auto;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  border: 1px solid #ededed;
+  font-size: 14px;
+}
+
+.todo-wrap {
+  width: 100%;
 }
 </style>

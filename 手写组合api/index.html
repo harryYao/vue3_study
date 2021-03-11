@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js"></script>
+  <script>
+    // const proxyUser1 = shallowReactive({
+    //   name: 'xiaoxiao',
+    //   car: {
+    //     color: 'red'
+    //   }
+    // })
+    // console.log(proxyUser1.name)
+    // proxyUser1.car.color = 'blue'
+    // console.log(proxyUser1.car)
+
+
+    // const proxyUser2 = reactive({
+    //   name: '东东',
+    //   car: {
+    //     color: 'yellow'
+    //   }
+    // })
+    // // console.log(proxyUser1.name)
+    // proxyUser2.car.color = 'blue'
+    // console.log(proxyUser2.car)
+
+    // const proxyUser3 = readonly({
+    //   name: 'xiaoxiao',
+    //   car: {
+    //     color: 'red'
+    //   }
+    // })
+    // console.log(proxyUser3.name)
+    // proxyUser3.car.color = 'blue'
+    // console.log(proxyUser3)
+
+
+
+    // const ref1 = shallowRef({
+    //   name: 'xiaoxiao',
+    //   car: {
+    //     color: 'red'
+    //   }
+    // })
+
+    // // console.log(ref1.value.name);
+    // ref1.value = {name: '大卫'}
+
+
+    // const ref2 = ref({
+    //   name: 'xiaoxiao',
+    //   car: {
+    //     color: 'red'
+    //   }
+    // })
+
+    // // console.log(ref2.value);
+    // ref2.value.name =  '大卫'
+
+
+    console.log(isRef(ref({})));
+    console.log(isReactive(reactive({})));
+    console.log(isReadonly(readonly({})));
+    console.log(isProxy(reactive({})));
+    console.log(isProxy(readonly({})));
+
+  </script>
+</body>
+</html>
+
